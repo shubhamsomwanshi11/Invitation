@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul & Kalyani Wedding</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Tiro+Devanagari+Marathi&display=swap"
+        rel="stylesheet">
+    <style>
+        .card-container {
+            background-image: url(./background.jpg) !important;
+            width: 100vw;
+            height: 100vh;
+            background-position: center;
+            background-size: contain;
+            background-repeat: repeat-y;
+            opacity: 0.5px;
+            filter: blur(2.5px);
+            z-index: 0;
+            position: fixed;
+        }
+
+        .map {
+            height: 250px;
+            margin-top: 20px;
+        }
+
+        .centered {
+            margin: auto;
+        }
+
+        .floating-div {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+        }
+
+        .name-container {
+            background: url(./box-removebg-preview.png);
+            background-size: contain;
+            background-position: center;
+            height: 160px;
+            padding-top: 5px;
+            background-repeat: no-repeat;
+        }
+
+        .tutari {
+            width: 450px !important;
+        }
+
+        .card .input {
+            width: 50px;
+        }
+
+        @font-face {
+            font-family: 'KrutiDev111Bold';
+            src: url('./fonts/Kruti\ Dev\ 111\ Bold.ttf') format('truetype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'KrutiDev140Regular';
+            src: url('./fonts/Kruti\ Dev\ 140\ Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .main-name {
+            font-family: 'Tiro Devanagari Hindi', serif;
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .carousel {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .carousel-inner {
+            display: flex;
+            justify-content: space-between;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // Set the date we're counting down to
+            const countDownDate = new Date("Jan 27, 2024 12:37:00").getTime();
+
+            // Update the countdown every 1 second
+            const x = setInterval(function () {
+                // Get the current date and time
+                const now = new Date().getTime();
+
+                // Calculate the remaining time
+                const distance = countDownDate - now;
+
+                // Calculate days, hours, minutes, and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the countdown
+                document.getElementById("days").value = days;
+                document.getElementById("hours").value = hours;
+                document.getElementById("minutes").value = minutes;
+                document.getElementById("seconds").value = seconds;
+
+                // If the countdown is over, display a message
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("days").value = 0;
+                    document.getElementById("hours").value = 0;
+                    document.getElementById("minutes").value = 0;
+                    document.getElementById("seconds").value = 0;
+                    // You can display a message or take any action when the countdown is over
+                }
+            }, 1000);
+
+
+            const carousel = document.querySelector('.carousel');
+            const carouselInner = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                const itemWidth = items[0].offsetWidth;
+                carouselInner.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateCarousel();
+            }
+
+            setInterval(nextSlide, 3000); // Change slide every 3 seconds (adjust as needed)
+
+            const initialCoordinates = [19.913752435356383, 74.74438496488199];
+            const map = L.map('map').setView(initialCoordinates, 13);
+
+            // Add a tile layer (you can use different tile providers)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Add a marker at the initial coordinates
+            L.marker(initialCoordinates).addTo(map);
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="card-container"></div>
+    <div class="container has-text-centered floating-div">
+        <figure class="image is-128x128 centered">
+            <img
+                src="https://png.pngtree.com/png-clipart/20221219/original/pngtree-luxury-shri-ganeshay-namah-golden-hindi-calligraphy-text-with-ganesh-line-png-image_8781771.png">
+        </figure>
+        <audio controls autoplay style="display: none;">
+            <source src="./Sar-Sukhachi-Shravani-Romantic-Song-Mangalashtak-Once-More-Abhijeet-Bela.mp3" type="audio/ogg" >
+            Your browser does not support the audio element.
+        </audio>
+        <!-- <img src="./couple.png" alt="" class="couple-image centered"> -->
+        <h1 style="width: 70%; font-size: 0.9rem;color: rgba(220, 20, 60, 0.858);"
+            class="has-text-weight-semibold centered">स.न.वि.वि. आमच्या येथे श्री कृपेकरुन
+            रेशमांच्या बंधनात, वाद्यांच्या गजरात, सनईच्या सुमधुर सूरात !</h1>
+        <div class="name-container">
+            <p class="mt-5"><span class="has-text-weight-semibold">चि.</span> <span
+                    class="title is-4 main-name has-text-danger">राहुल</span></p>
+            <p class="mt-1 centered has-text-grey main-name " style="width: 70%;">सौ. सुनिता व श्री. अरुण विनायक पा.
+                सोमवंशी रा.
+                लाडगाव ता.
+                वैजापुर
+                जि.
+                छ. संभाजीनगर यांचे चिरंजीव</p>
+        </div>
+        <div class="mt-4">
+            <figure class="image centered" style="width: 30%;">
+                <img src="https://logos-world.net/wp-content/uploads/2022/02/Swastik-Symbol.png" alt="">
+            </figure>
+        </div>
+        <div class="name-container">
+            <p class="mt-5 main-name "><span class="has-text-weight-semibold">चि. सौ. का.</span> <span
+                    class="title is-4 main-name has-text-danger">कल्याणी</span>
+            </p>
+            <p class="mt-1 centered has-text-grey main-name " style="width: 60%;">सौ. कुसुम व श्री. सुदाम गोरखनाथ पा.
+                जाधव रा. शिऊर
+                ता.
+                वैजापुर
+                जि.
+                छ. संभाजीनगर यांनी सुकन्या</p>
+        </div>
+        <div class="wedding-details is-flex">
+            <figure class="image ">
+                <img src="./tutari-removebg-preview.png" class="tutari">
+            </figure>
+
+
+            <figure class="image ">
+                <img src="./shubhvivah.png">
+            </figure>
+
+
+            <figure class="image " style=" transform: scaleX(-1);">
+                <img src="./tutari-removebg-preview.png" class="tutari">
+            </figure>
+        </div>
+
+        <div class="card mx-5">
+            <div class="card-content">
+                <p class="mt-2 has-text-weight-bold main-name ">शनिवार दि. १७/०१/२०२४ १२:२४ वाजता करण्याचे योजिले आहे.
+                </p>
+                <hr>
+                <div class="is-flex">
+                    <div class="is-flex">
+                        <div>
+                            <span>Days</span>
+                            <input id="days" type="text" disabled value="0"
+                                class=" mt-2 is-danger  has-text-centered has-text-weight-bold input has-text-danger">
+                        </div>
+                        <div>
+                            <span>Hours</span>
+                            <input id="hours" type="text" disabled value="0"
+                                class=" mt-2 is-danger  has-text-centered has-text-weight-bold input has-text-danger">
+                        </div>
+                        <div>
+                            <span>Minutes</span>
+                            <input id="minutes" type="text" disabled value="0"
+                                class=" mt-2 is-danger  has-text-centered has-text-weight-bold input has-text-danger">
+                        </div>
+                        <div>
+                            <span>Seconds</span>
+                            <input id="seconds" type="text" disabled value="0"
+                                class=" mt-2 is-danger  has-text-centered has-text-weight-bold input has-text-danger">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="name-container mt-3">
+            <h1 class="is-size-3 has-text-danger mt-5 has-text-weight-bold main-name ">विवाहस्थळ</h1>
+            <p class="has-text-grey has-text-centered centered has-text-weight-semibold main-name " style="width: 60%;">
+                श्रद्धा लॉंन्स शिऊर ता. वैजापुर जि. छ. संभाजीनगर</p>
+        </div>
+        <hr class="mx-5">
+        <h1 class="has-text-weight-bold">Photo Gallary</h1>
+        <div class="container mt-2 m-5" style="height: 480px;">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item box">
+                        <img src="./couple1.jpeg" alt="Image 1">
+                    </div>
+                    <div class="carousel-item box">
+                        <img src="./couple2.jpeg" alt="Image 2">
+                    </div>
+                    <div class="carousel-item box">
+                        <img src="./couple3.jpeg" alt="Image 3">
+                    </div>
+                    <div class="carousel-item box">
+                        <img src="./couple4.jpeg" alt="Image 3">
+                    </div>
+                    <div class="carousel-item box">
+                        <img src="./couple5.jpeg" alt="Image 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 class="main-title centered has-text-weight-bold has-text-centered mb-5" style="width: 80%">सोमवंशी पा.
+            परिवार व जाधव पा. परिवार तर्फे आपणास व आपल्या कुटुंबास
+            आग्रहाचे निमंत्रण !</h1>
+        <div class="box m-5">
+            <div id="map" class="map"></div>
+        </div>
+    </div>
+</body>
+
+</html>
