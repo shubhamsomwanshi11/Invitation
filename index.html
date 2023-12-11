@@ -32,10 +32,6 @@
             margin-top: 20px;
         }
 
-        .carousel-inner .box {
-            height: 100%;
-        }
-
         .centered {
             margin: auto;
         }
@@ -77,10 +73,7 @@
             font-style: normal;
         }
 
-        .main-name {
-            font-family: 'Tiro Devanagari Hindi', serif;
-            font-family: 'Tiro Devanagari Marathi', serif;
-        }
+        .main-name {}
 
         .container {
             margin-top: 20px;
@@ -107,13 +100,13 @@
             width: 100%;
             border-radius: 8px;
         }
-
-        .overflow-text {
-            max-width: 75%;
-        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener('click', () => {
+                var audio = document.querySelector('audio');
+                audio.play();
+            })
 
             // Set the date we're counting down to
             const countDownDate = new Date("Jan 27, 2024 12:37:00").getTime();
@@ -195,20 +188,15 @@
             <img
                 src="https://png.pngtree.com/png-clipart/20221219/original/pngtree-luxury-shri-ganeshay-namah-golden-hindi-calligraphy-text-with-ganesh-line-png-image_8781771.png">
         </figure>
-        <audio controls autoplay style="display: none;">
-            <source src="./Sar-Sukhachi-Shravani-Romantic-Song-Mangalashtak-Once-More-Abhijeet-Bela.mp3"
-                type="audio/ogg">
-            Your browser does not support the audio element.
-        </audio>
+
         <!-- <img src="./couple.png" alt="" class="couple-image centered"> -->
         <h1 style="width: 70%; font-size: 0.9rem;color: rgba(220, 20, 60, 0.858);"
             class="has-text-weight-semibold centered">स.न.वि.वि. आमच्या येथे श्री कृपेकरुन
             रेशमांच्या बंधनात, वाद्यांच्या गजरात, सनईच्या सुमधुर सूरात !</h1>
-        <div class="name-container">
+        <div class="name-container mt-3">
             <p class="mt-5"><span class="has-text-weight-semibold">चि.</span> <span
                     class="title is-4 main-name has-text-danger">राहुल</span></p>
-            <p class="mt-1 centered has-text-grey main-name overflow-text" style="width: 70%;">सौ. सुनिता व श्री. अरुण
-                विनायक पा.
+            <p class="mt-1 centered has-text-grey" style="width: 60%;">सौ. सुनिता व श्री. अरुण विनायक पा.
                 सोमवंशी रा.
                 लाडगाव ता.
                 वैजापुर
@@ -224,14 +212,14 @@
             <p class="mt-5 main-name "><span class="has-text-weight-semibold">चि. सौ. का.</span> <span
                     class="title is-4 main-name has-text-danger">कल्याणी</span>
             </p>
-            <p class="mt-1 centered has-text-grey main-name overflow-text" style="width: 60%;">सौ. कुसुम व श्री. सुदाम
-                गोरखनाथ पा.
+            <p class="mt-1 centered has-text-grey main-name " style="width: 60%;">सौ. कुसुम व श्री. सुदाम गोरखनाथ पा.
                 जाधव रा. शिऊर
                 ता.
                 वैजापुर
                 जि.
                 छ. संभाजीनगर यांनी सुकन्या</p>
         </div>
+
         <div class="wedding-details is-flex">
             <figure class="image ">
                 <img src="./tutari-removebg-preview.png" class="tutari">
@@ -250,7 +238,7 @@
 
         <div class="card mx-5">
             <div class="card-content">
-                <p class="mt-2 has-text-weight-bold main-name ">शनिवार दि. १७/०१/२०२४ १२:२४ वाजता करण्याचे योजिले आहे.
+                <p class="mt-2 has-text-weight-bold main-name ">शनिवार दि. २७/०१/२०२४ १२:२४ वाजता करण्याचे योजिले आहे.
                 </p>
                 <hr>
                 <div class="is-flex">
@@ -279,17 +267,23 @@
                 </div>
             </div>
         </div>
-
+        <div class="mt-5">
+            <audio controls autoplay >
+                <source src="./Sar-Sukhachi-Shravani-Romantic-Song-Mangalashtak-Once-More-Abhijeet-Bela.mp3"
+                    type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
         <div class="name-container mt-3">
             <h1 class="is-size-3 has-text-danger mt-5 has-text-weight-bold main-name ">विवाहस्थळ</h1>
             <p class="has-text-grey has-text-centered centered has-text-weight-semibold main-name " style="width: 60%;">
-                श्रद्धा लॉंन्स शिऊर ता. वैजापुर जि. छ. संभाजीनगर</p>
+                राधाकृष्ण लॉंन्स शिऊर ता. वैजापुर जि. छ. संभाजीनगर</p>
         </div>
         <hr class="mx-5">
         <h1 class="has-text-weight-bold">Photo Gallary</h1>
         <div class="container mt-2 m-5" style="height: 480px;">
             <div class="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner mb-5">
                     <div class="carousel-item box">
                         <img src="./couple1.jpeg" alt="Image 1">
                     </div>
@@ -308,12 +302,14 @@
                 </div>
             </div>
         </div>
-        <h1 class="main-title centered has-text-weight-bold has-text-centered mb-5" style="width: 80%">सोमवंशी पा.
-            परिवार व जाधव पा. परिवार तर्फे आपणास व आपल्या कुटुंबास
-            आग्रहाचे निमंत्रण !</h1>
         <div class="box m-5">
+            <p class="has-text-weight-semibold is-size-5">Map Directions</p>
             <div id="map" class="map"></div>
         </div>
+        <h1 class="main-title centered has-text-weight-bold has-text-centered mb-5" style="width: 80%;">
+            सोमवंशी पा.
+            परिवार व जाधव पा. परिवार तर्फे आपणास व आपल्या कुटुंबास
+            आग्रहाचे निमंत्रण !</h1>
     </div>
 </body>
 
